@@ -297,6 +297,8 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " VimFiler
 let g:vimfiler_edit_action = 'tabopen'
+let g:vimfiler_as_default_explorer = 1
+nmap <C-F> :VimFiler -split -simple -winwidth=35 -no-quit<CR>
 
 "================================================================================
 " local setting
