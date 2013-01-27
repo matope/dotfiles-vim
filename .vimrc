@@ -9,12 +9,13 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'unite.vim'
-Bundle 'snipMate'
+" Bundle 'snipMate'
 Bundle 'Shougo/neocomplcache'
 
-Bundle 'rails.vim'
+" Bundle 'rails.vim'
 Bundle 'fugitive.vim'
 Bundle 'Shougo/vimfiler'
+Bundle 'motemen/git-vim'
 "================================================================================
 " ruler, statusline
 "================================================================================
@@ -34,7 +35,7 @@ endif
 " syntax and colors
 "================================================================================
 syntax enable
-colorscheme darkblue
+" colorscheme darkblue
 
 " We know xterm-debian is a color terminal
 if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256color"
