@@ -17,6 +17,7 @@ Bundle 'fugitive.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'motemen/git-vim'
 Bundle 'h1mesuke/unite-outline'
+Bundle 'scrooloose/nerdtree'
 "================================================================================
 " ruler, statusline
 "================================================================================
