@@ -16,6 +16,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'fugitive.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'motemen/git-vim'
+Bundle 'h1mesuke/unite-outline'
 "================================================================================
 " ruler, statusline
 "================================================================================
@@ -290,7 +291,7 @@ nnoremap <unique> ec :cclose<CR>
 "================================================================================
 " unite.vim
 " 入力モードで開始する
-let g:unite_enable_start_insert=1
+" let g:unite_enable_start_insert=1
 nnoremap <silent> UU :<C-u>UniteWithCurrentDir buffer_tab file_mru<CR>
 nnoremap <silent> B :<C-u>Unite buffer file_mru<CR>
 " ESCキーを2回押すと終了する
@@ -298,10 +299,24 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " VimFiler
-let g:vimfiler_edit_action = 'tabopen'
+" let g:vimfiler_edit_action = 'tabopen'
 let g:vimfiler_as_default_explorer = 1
-:command File :VimFiler -split -simple -winwidth=35 -no-quit
+:command Filer :VimFiler -split -winwidth=35 -no-quit
 
+"================================================================================
+" mouse
+"================================================================================
+" Enable mouse support.
+set mouse=a
+
+" For screen.
+if &term =~ "^screen"
+    augroup MyAutoCmd
+        autocmd VimLeave * :set mouse=
+     augroup END
+    " screenでマウスを使用するとフリーズするのでその対策
+    set ttymouse=xterm2
+endif
 "================================================================================
 " local setting
 "================================================================================
