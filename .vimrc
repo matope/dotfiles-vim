@@ -65,11 +65,12 @@ if !has('win32')
   hi PmenuSbar ctermbg=0
 endif
 
-if !has('macunix')
-  highlight Visual ctermbg=0
-else
-  highlight Visual ctermbg=8
-end
+" 選択範囲が見えなくなるのでコメントアウト
+" if !has('macunix')
+"   highlight Visual ctermbg=0
+" else
+"   highlight Visual ctermbg=8
+" end
 
 highlight SpecialKey ctermbg=2
 highlight MatchParen cterm=none ctermbg=15 ctermfg=0
@@ -299,7 +300,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 " VimFiler
 let g:vimfiler_edit_action = 'tabopen'
 let g:vimfiler_as_default_explorer = 1
-nmap <C-F> :VimFiler -split -simple -winwidth=35 -no-quit<CR>
+:command File :VimFiler -split -simple -winwidth=35 -no-quit
 
 "================================================================================
 " local setting
