@@ -6,6 +6,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
+let g:vundle_default_git_proto='git'
 Bundle 'gmarik/vundle'
 
 Bundle 'unite.vim'
