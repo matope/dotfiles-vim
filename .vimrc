@@ -18,6 +18,8 @@ Bundle 'Shougo/vimfiler'
 Bundle 'motemen/git-vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'scrooloose/nerdtree'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell'
 "================================================================================
 " ruler, statusline
 "================================================================================
