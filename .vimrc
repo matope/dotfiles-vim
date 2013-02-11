@@ -21,6 +21,8 @@ Bundle 'h1mesuke/unite-outline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
+Bundle 'vim-scripts/DoxygenToolkit.vim'
+Bundle 'vim-scripts/Align'
 "================================================================================
 " ruler, statusline
 "================================================================================
