@@ -22,6 +22,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 Bundle 'tomtom/tcomment_vim'
+Bundle 'vim-scripts/DoxygenToolkit.vim'
+Bundle 'vim-scripts/Align'
 "================================================================================
 " ruler, statusline
 "================================================================================
