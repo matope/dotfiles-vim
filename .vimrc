@@ -58,8 +58,8 @@ endif
 "================================================================================
 " syntax and colors
 "================================================================================
-
 syntax enable
+colorscheme desert
 
 " We know xterm-debian is a color terminal
 if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256color"
