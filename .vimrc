@@ -369,9 +369,9 @@ set visualbell t_vb=
 " local setting
 "================================================================================
 " load ~/.vimrc.local
-if filereadable(expand('$HOME/.vimrc.local'))
-  source ~/.vimrc.local
-endif
 if filereadable(expand('$HOME/.vimrc.powerline'))
   source ~/.vimrc.powerline
+endif
+if filereadable(expand('$HOME/.vimrc.local'))
+  source ~/.vimrc.local
 endif
