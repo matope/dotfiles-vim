@@ -25,7 +25,6 @@ Bundle 'Shougo/vimshell'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'vim-scripts/Align'
-Bundle 'Lokaltog/vim-powerline'
 
 " カラースキーム
 Bundle 'altercation/vim-colors-solarized'
@@ -55,8 +54,6 @@ if &term =~ "screen"
   " screen Buffer 切り替えで screen にファイル名を表示
   autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kv:%\\"' | endif
 endif
-" Powerlineをファンシーに
-let g:Powerline_symbols = 'fancy'
 
 "================================================================================
 " syntax and colors
@@ -85,27 +82,27 @@ set t_Co=16
 set t_Sf=[3%dm
 set t_Sb=[4%dm
 
-if !has('win32')
-  " 補完候補色
-  hi Pmenu ctermbg=8
-  hi PmenuSel ctermbg=12
-  hi PmenuSbar ctermbg=0
-endif
+" if !has('win32')
+"   " 補完候補色
+"   hi Pmenu ctermbg=8
+"   hi PmenuSel ctermbg=12
+"   hi PmenuSbar ctermbg=0
+" endif
 
 " 選択範囲が見えなくなるのでコメントアウト
-" if !has('macunix')
-"   highlight Visual ctermbg=0
-" else
-"   highlight Visual ctermbg=8
-" end
+if !has('macunix')
+  highlight Visual ctermbg=0
+else
+  highlight Visual ctermbg=8
+end
 
-highlight SpecialKey ctermbg=2
-highlight MatchParen cterm=none ctermbg=15 ctermfg=0
-highlight Search ctermbg=5 ctermfg=0
+" highlight SpecialKey ctermbg=2
+" highlight MatchParen cterm=none ctermbg=15 ctermfg=0
+" highlight Search ctermbg=5 ctermfg=0
 
 " highlight 上書き
-autocmd VimEnter,WinEnter * highlight SpecialKey ctermbg=0
-autocmd VimEnter,WinEnter * highlight PmenuSel ctermbg=12
+" autocmd VimEnter,WinEnter * highlight SpecialKey ctermbg=0
+" autocmd VimEnter,WinEnter * highlight PmenuSel ctermbg=12
 
 
 "================================================================================
@@ -374,4 +371,7 @@ set visualbell t_vb=
 " load ~/.vimrc.local
 if filereadable(expand('$HOME/.vimrc.local'))
   source ~/.vimrc.local
+endif
+if filereadable(expand('$HOME/.vimrc.powerline'))
+  source ~/.vimrc.powerline
 endif
