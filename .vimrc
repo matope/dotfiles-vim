@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 Bundle 'unite.vim'
 " Bundle 'snipMate'
 Bundle 'Shougo/neocomplcache'
+Bundle 'ujihisa/unite-colorscheme'
 
 " Bundle 'rails.vim'
 Bundle 'fugitive.vim'
@@ -24,6 +25,21 @@ Bundle 'Shougo/vimshell'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'vim-scripts/Align'
+Bundle 'Lokaltog/vim-powerline'
+
+" カラースキーム
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'croaker/mustang-vim'
+Bundle 'jeffreyiacono/vim-colors-wombat'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'vim-scripts/Lucius'
+Bundle 'vim-scripts/Zenburn'
+Bundle 'mrkn/mrkn256.vim'
+Bundle 'jpo/vim-railscasts-theme'
+Bundle 'therubymug/vim-pyte'
+Bundle 'tomasr/molokai'
+Bundle 'altercation/solarized'
+Bundle 'vim-scripts/pyte'
 "================================================================================
 " ruler, statusline
 "================================================================================
@@ -39,11 +55,14 @@ if &term =~ "screen"
   " screen Buffer 切り替えで screen にファイル名を表示
   autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kv:%\\"' | endif
 endif
+" Powerlineをファンシーに
+let g:Powerline_symbols = 'fancy'
+
 "================================================================================
 " syntax and colors
 "================================================================================
+
 syntax enable
-" colorscheme darkblue
 
 " We know xterm-debian is a color terminal
 if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256color"
@@ -87,6 +106,8 @@ highlight Search ctermbg=5 ctermfg=0
 " highlight 上書き
 autocmd VimEnter,WinEnter * highlight SpecialKey ctermbg=0
 autocmd VimEnter,WinEnter * highlight PmenuSel ctermbg=12
+
+
 "================================================================================
 " tabstop and indents
 "================================================================================
@@ -139,6 +160,10 @@ command! -nargs=1 Bgrep :call Bgrep(<f-args>)
 
 " :grepで組み込みのgrepを使う
 set grepprg=internal
+
+" *,#による検索時に次の検索結果にジャンプしないようにする
+nmap * *N
+nmap # #N
 "================================================================================
 " editing
 "================================================================================
@@ -185,6 +210,10 @@ set ambiwidth=double
 
 " 前回終了したカーソル行に移動
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+
+" スクロールオフセット
+set scrolloff=5
+
 "================================================================================
 " completion
 "================================================================================
@@ -331,8 +360,10 @@ endif
 "================================================================================
 " misc
 "================================================================================
-" スワップファイルの保存先を移動
-set directory=~/.vim/tmp
+set autochdir
+
+" ビジュアルベルを抑止
+set visualbell t_vb=
 
 "================================================================================
 " local setting
