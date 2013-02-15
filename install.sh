@@ -20,6 +20,7 @@ git submodule init
 git submodule update
 
 ask_and_link $DOTFILES_ROOT/.vimrc $HOME/.vimrc
+ask_and_link $DOTFILES_ROOT/.vimrc.powerline $HOME/.vimrc.powerline
 ask_and_link $DOTFILES_ROOT/.vim $HOME/.vim
 
 success "Link done. Please open vim and type \":BundleInstall\""
