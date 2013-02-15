@@ -17,6 +17,7 @@ DOTFILES_ROOT=`cd $(dirname $0); pwd`
 
 cd $DOTFILES_ROOT
 git submodule init
+git submodule foreach 'git pull origin master'
 git submodule update
 
 ask_and_link $DOTFILES_ROOT/.vimrc $HOME/.vimrc
