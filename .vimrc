@@ -39,6 +39,7 @@ Bundle 'therubymug/vim-pyte'
 Bundle 'tomasr/molokai'
 Bundle 'altercation/solarized'
 Bundle 'vim-scripts/pyte'
+Bundle 'w0ng/vim-hybrid'
 "================================================================================
 " ruler, statusline
 "================================================================================
@@ -226,7 +227,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 
 " Bundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1 
-let g:neocomplcache_enable_auto_select = 1 
+let g:neocomplcache_enable_auto_select = 0 
 
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
@@ -253,6 +254,14 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 set hidden
 " 外部のエディタで編集中のファイルが変更されたら自動で読み直す
 set autoread
+
+"================================================================================
+" windos
+"================================================================================
+" 新しいウィンドウを下に開く
+set splitbelow
+" 新しいウィンドウを右に開く
+set splitright
 
 "================================================================================
 " tabs
