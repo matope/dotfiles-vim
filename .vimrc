@@ -367,9 +367,9 @@ endif
 " misc
 "================================================================================
 " カレントディレクトリを自動的にカレントウィンドウに変更
-if exists('+autochdir')
-  set autochdir
-endif
+"if exists('+autochdir')
+"  set autochdir
+"endif
 
 " ビジュアルベルを抑止
 set visualbell t_vb=
