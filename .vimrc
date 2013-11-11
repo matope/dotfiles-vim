@@ -25,6 +25,7 @@ Bundle 'Shougo/vimshell'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'vim-scripts/Align'
+Bundle 'scrooloose/syntastic'
 
 " カラースキーム
 Bundle 'altercation/vim-colors-solarized'
@@ -212,6 +213,9 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 " スクロールオフセット
 set scrolloff=5
 
+" スクロールを高速化
+set ttyfast
+
 "================================================================================
 " completion
 "================================================================================
@@ -367,12 +371,15 @@ endif
 " misc
 "================================================================================
 " カレントディレクトリを自動的にカレントウィンドウに変更
-if exists('+autochdir')
+"if exists('+autochdir')
 "  set autochdir
-endif
+"endif
 
 " ビジュアルベルを抑止
 set visualbell t_vb=
+
+" <c-j>でEsc
+imap <c-j> <esc>
 
 "================================================================================
 " local setting
