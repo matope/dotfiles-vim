@@ -12,7 +12,7 @@ ask_and_link() {
 #    ln -fs $1 $2
 #    success "Linked $1 -> $2"
 #  fi
-#}
+}
 
 DOTFILES_ROOT=`cd $(dirname $0); pwd`
 
