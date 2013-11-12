@@ -5,13 +5,14 @@ success () {
 }
 
 ask_and_link() {
-  /bin/echo -n "Make link $1 -> $2 ? [y/n]"
-  read ANS
-  if [ "$ANS" = 'y' -o "$ANS" = 'yes' ]; then
-    ln -fs $1 $2
-    success "Linked $1 -> $2"
-  fi
-}
+  ln -sibv $1 $2
+#  /bin/echo -n "Make link $1 -> $2 ? [y/n]"
+#  read ANS
+#  if [ "$ANS" = 'y' -o "$ANS" = 'yes' ]; then
+#    ln -fs $1 $2
+#    success "Linked $1 -> $2"
+#  fi
+#}
 
 DOTFILES_ROOT=`cd $(dirname $0); pwd`
 
