@@ -41,6 +41,7 @@ Bundle 'tomasr/molokai'
 Bundle 'altercation/solarized'
 Bundle 'vim-scripts/pyte'
 Bundle 'w0ng/vim-hybrid'
+
 "================================================================================
 " ruler, statusline
 "================================================================================
@@ -391,3 +392,20 @@ endif
 if filereadable(expand('$HOME/.vimrc.local'))
   source ~/.vimrc.local
 endif
+
+"================================================================================
+" Templates
+"================================================================================
+autocmd BufNewFile *.cpp 0r $HOME/.vim/templates/cpp.txt
+autocmd BufNewFile *.cc 0r $HOME/.vim/templates/cpp.txt
+
+
+"================================================================================
+" Golang
+"================================================================================
+filetype off
+filetype plugin off
+if $GOROOT != ''
+  set rtp+=$GOROOT/misc/vim
+endif
+filetype plugin on
