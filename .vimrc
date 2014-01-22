@@ -26,6 +26,7 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'vim-scripts/Align'
 Bundle 'scrooloose/syntastic'
+Bundle 'vim-jp/cpp-vim'
 
 " カラースキーム
 Bundle 'altercation/vim-colors-solarized'
