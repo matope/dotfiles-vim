@@ -26,6 +26,8 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'vim-scripts/Align'
 Bundle 'scrooloose/syntastic'
+Bundle 'rking/ag.vim'
+Bundle 'vim-scripts/taglist.vim'
 
 " カラースキーム
 Bundle 'altercation/vim-colors-solarized'
@@ -410,3 +412,13 @@ if $GOROOT != ''
   set rtp+=$GOROOT/misc/vim
 endif
 filetype plugin on
+
+"================================================================================
+" Taglist
+"================================================================================
+"set tags = tags
+let Tlist_Ctags_Cmd = "/usr/local/bin/ctags -R"  " ctagsのコマンド
+"let Tlist_Show_One_File = 1                         ” 現在表示中のファイルのみのタグしか表示しない
+"let Tlist_Use_Right_Window = 1                    ” 右側にtag listのウインドうを表示する
+"let Tlist_Exit_OnlyWindow = 1                      " taglistのウインドウだけならVimを閉じる
+"map <silent> <leader>l :TlistToggle<CR>      " \lでtaglistウインドウを開いたり閉じたり出来るショートカット
