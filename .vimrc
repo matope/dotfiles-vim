@@ -28,6 +28,7 @@ Bundle 'vim-scripts/Align'
 Bundle 'scrooloose/syntastic'
 Bundle 'rking/ag.vim'
 Bundle 'vim-scripts/taglist.vim'
+Bundle 'vim-jp/cpp-vim'
 
 " カラースキーム
 Bundle 'altercation/vim-colors-solarized'
