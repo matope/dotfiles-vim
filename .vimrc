@@ -407,6 +407,8 @@ autocmd BufNewFile *.go 0r $HOME/.vim/templates/go.txt
 "================================================================================
 " Golang
 "================================================================================
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+set completeopt=menu,preview
 filetype off
 filetype plugin off
 if $GOROOT != ''
