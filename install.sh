@@ -26,6 +26,6 @@ ask_and_link $DOTFILES_ROOT/.vimrc.powerline $HOME/.vimrc.powerline
 ask_and_link $DOTFILES_ROOT/.vim $HOME/.vim
 
 success "Link done. executing vim +\":BundleInstall\"..."
-vim +":BundleInstall" +:q
+vim +":BundleInstall" +:q +:q
 
 exit 0
