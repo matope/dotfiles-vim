@@ -9,16 +9,16 @@ call vundle#rc()
 let g:vundle_default_git_proto='git'
 Bundle 'gmarik/vundle'
 
-Bundle 'unite.vim'
+" Bundle 'unite.vim'
 " Bundle 'snipMate'
 Bundle 'Shougo/neocomplcache'
-Bundle 'ujihisa/unite-colorscheme'
+"Bundle 'ujihisa/unite-colorscheme'
 
 " Bundle 'rails.vim'
 Bundle 'fugitive.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'motemen/git-vim'
-Bundle 'h1mesuke/unite-outline'
+" Bundle 'h1mesuke/unite-outline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
@@ -44,6 +44,8 @@ Bundle 'tomasr/molokai'
 Bundle 'altercation/solarized'
 Bundle 'vim-scripts/pyte'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'vim-scripts/Zenburn'
+Bundle 'vim-scripts/desert256.vim'
 
 "================================================================================
 " ruler, statusline
@@ -64,15 +66,22 @@ endif
 "================================================================================
 " syntax and colors
 "================================================================================
+set t_Co=256
+set t_Sf=[3%dm
+set t_Sb=[4%dm
 syntax enable
-colorscheme desert
 
-" We know xterm-debian is a color terminal
-if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256color"
- set t_Co=16
- set t_Sf=[3%dm
- set t_Sb=[4%dm
-endif
+"--- solarized ------------------------
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+" colorscheme solarized
+"--- molokai ------------------------
+let g:molokai_original = 1
+let g:rehash256 = 1
+set background=dark
+#colorscheme molokai
+
+colorscheme desert256
 
 "タブ文字の表示
 set list
@@ -83,10 +92,6 @@ set showmatch
 
 " Don't wrap words by default
 set textwidth=0
-
-set t_Co=16
-set t_Sf=[3%dm
-set t_Sb=[4%dm
 
 " if !has('win32')
 "   " 補完候補色
@@ -425,3 +430,4 @@ let Tlist_Ctags_Cmd = "/usr/local/bin/ctags -R"  " ctagsのコマンド
 "let Tlist_Use_Right_Window = 1                    ” 右側にtag listのウインドうを表示する
 "let Tlist_Exit_OnlyWindow = 1                      " taglistのウインドウだけならVimを閉じる
 "map <silent> <leader>l :TlistToggle<CR>      " \lでtaglistウインドウを開いたり閉じたり出来るショートカット
+
