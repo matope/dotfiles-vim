@@ -79,7 +79,7 @@ let g:solarized_termtrans=1
 let g:molokai_original = 1
 let g:rehash256 = 1
 set background=dark
-#colorscheme molokai
+"colorscheme molokai
 
 colorscheme desert256
 
