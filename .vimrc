@@ -81,7 +81,7 @@ let g:rehash256 = 1
 set background=dark
 "colorscheme molokai
 
-colorscheme desert256
+colorscheme molokai
 
 "タブ文字の表示
 set list
