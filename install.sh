@@ -12,7 +12,6 @@ git submodule foreach 'git pull origin master'
 git submodule update
 
 ln -siv $DOTFILES_ROOT/.vimrc $HOME/.vimrc
-ln -siv $DOTFILES_ROOT/.vimrc.powerline $HOME/.vimrc.powerline
 ln -siv $DOTFILES_ROOT/.vim $HOME/.vim
 
 success "Link done. executing vim +\":BundleInstall\"..."

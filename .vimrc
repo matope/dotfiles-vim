@@ -30,6 +30,8 @@ Bundle 'rking/ag.vim'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'fatih/vim-go'
+" Bundle 'bling/vim-airline'
+Bundle 'itchyny/lightline.vim'
 
 " カラースキーム
 Bundle 'altercation/vim-colors-solarized'
@@ -63,6 +65,18 @@ if &term =~ "screen"
   " screen Buffer 切り替えで screen にファイル名を表示
   autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kv:%\\"' | endif
 endif
+
+"--------------------------------------------------------------------------------
+" lightline
+"--------------------------------------------------------------------------------
+let g:lightline = {
+      \ 'colorscheme': 'default',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
 
 "================================================================================
 " syntax and colors
@@ -395,9 +409,6 @@ imap <c-j> <esc>
 " local setting
 "================================================================================
 " load ~/.vimrc.local
-if filereadable(expand('$HOME/.vimrc.powerline'))
-  source ~/.vimrc.powerline
-endif
 if filereadable(expand('$HOME/.vimrc.local'))
   source ~/.vimrc.local
 endif

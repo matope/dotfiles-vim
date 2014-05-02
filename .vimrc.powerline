@@ -1,5 +1,0 @@
-Bundle 'Lokaltog/vim-powerline'
-
-" Powerlineをファンシーに
-let g:Powerline_symbols = 'fancy'
-
