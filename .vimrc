@@ -34,9 +34,8 @@ Bundle 'fatih/vim-go'
 Bundle 'itchyny/lightline.vim'
 
 " カラースキーム
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'croaker/mustang-vim'
-Bundle 'jeffreyiacono/vim-colors-wombat'
+Bundle 'vim-scripts/Wombat'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'vim-scripts/Lucius'
 Bundle 'vim-scripts/Zenburn'
@@ -45,10 +44,12 @@ Bundle 'jpo/vim-railscasts-theme'
 Bundle 'therubymug/vim-pyte'
 Bundle 'tomasr/molokai'
 Bundle 'altercation/solarized'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/pyte'
 Bundle 'w0ng/vim-hybrid'
 Bundle 'vim-scripts/Zenburn'
 Bundle 'vim-scripts/desert256.vim'
+Bundle 'vim-scripts/wombat256.vim'
 
 "================================================================================
 " ruler, statusline
@@ -87,14 +88,17 @@ set t_Sb=[4%dm
 syntax enable
 
 "--- solarized ------------------------
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256 
 let g:solarized_termtrans=1
 " colorscheme solarized
 "--- molokai ------------------------
 let g:molokai_original = 1
 let g:rehash256 = 1
+"--- lucius ------------------------
+let g:lucius_style='dark'
+" let g:lucius_contrast='high'
 set background=dark
-"colorscheme molokai
+
 
 colorscheme molokai
 
@@ -212,7 +216,8 @@ elseif has('win32unix') " cygwin
 endif
 
 " Gスクロールが遅い件の対応
-set timeoutlen=200
+set timeoutlen=10
+set ttimeoutlen=1
 
 " C-CでESC
 inoremap <C-C> <ESC>
@@ -300,22 +305,6 @@ nmap to :tabe
 nmap tn :tabnext<CR>
 nmap tp :tabNext<CR>
 nmap td :tabclose<CR>
-
-"================================================================================
-" ruby
-"================================================================================
-" Bundle 'rails.vim'
-autocmd BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
-autocmd BufNewFile,BufRead app/**/*.erb set fenc=utf-8
-autocmd BufNewFile,BufRead app/**/*.haml set fenc=utf-8
-autocmd BufNewFile,BufRead app/**/*.rb set fenc=utf-8
-
-" rails.vim
-let g:rails_level=4
-let g:rails_statusline=1
-" ruby omin complete
-let g:rubycomplete_rails = 1
-
 
 "================================================================================
 " encoding
