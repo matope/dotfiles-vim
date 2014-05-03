@@ -4,33 +4,39 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+function! s:meet_neocomplete_requirements()
+  return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
+endfunction
+
+
 " let Vundle manage Vundle
 " required! 
 let g:vundle_default_git_proto='git'
 Bundle 'gmarik/vundle'
 
+" Bundle 'Shougo/neocomplete.vim'
+" if s:meet_neocomplete_requirements()
+"   Bundle 'Shougo/neocomplete.vim'
+" else
+"   Bundle 'Shougo/neocomplcache.vim'
+" endif
 " Bundle 'unite.vim'
 " Bundle 'snipMate'
-Bundle 'Shougo/neocomplcache'
+" Bundle 'Shougo/vimfiler'
+" Bundle 'Shougo/vimproc'
+" Bundle 'Shougo/vimshell'
 "Bundle 'ujihisa/unite-colorscheme'
 
-" Bundle 'rails.vim'
 Bundle 'fugitive.vim'
-Bundle 'Shougo/vimfiler'
 Bundle 'motemen/git-vim'
-" Bundle 'h1mesuke/unite-outline'
 Bundle 'scrooloose/nerdtree'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'vim-scripts/Align'
 Bundle 'scrooloose/syntastic'
 Bundle 'rking/ag.vim'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'fatih/vim-go'
-" Bundle 'bling/vim-airline'
 Bundle 'itchyny/lightline.vim'
 
 " カラースキーム
@@ -59,7 +65,7 @@ set number
 "ステータスラインを常に表示
 set laststatus=2
 " ステータスラインの表示
-set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugitive#statusline()}\ %F%=%l,%c%V%8P
+" set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugitive#statusline()}\ %F%=%l,%c%V%8P
 "set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y
 
 if &term =~ "screen"
@@ -82,9 +88,11 @@ let g:lightline = {
 "================================================================================
 " syntax and colors
 "================================================================================
-set t_Co=256
+" set t_Co=256
 set t_Sf=[3%dm
 set t_Sb=[4%dm
+" tmux内で実行したときに背景色を保護する
+set t_ut=
 syntax enable
 
 "--- solarized ------------------------
@@ -258,28 +266,71 @@ set wildmode=list:longest
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" Bundle 'Shougo/neocomplcache'
-let g:neocomplcache_enable_at_startup = 1 
-let g:neocomplcache_enable_auto_select = 0 
+if !exists('g:neocomplete#enable_at_startup')
+  let g:acp_enableAtStartup = 0
+  " Use neocomplete.
+  let g:neocomplete#enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplete#enable_smart_case = 1
+  " Set minimum syntax keyword length.
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
+  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3 
+  " Define dictionary.
+  let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : '',
+        \ 'vimshell' : $HOME.'/.vimshell_hist',
+        \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
 
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>" 
-" <CR>: close popup and save indent.
-" inoremap <expr><CR>  neocomplcache#smart_close_popup() . (&indentexpr != '' " ? "\<C-f>\<CR>X\<BS>":"\<CR>")
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
+  " Define keyword.
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+  " Plugin key-mappings.
+  inoremap <expr><C-g>     neocomplete#undo_completion()
+  inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+  " Recommended key-mappings.
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return neocomplete#close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  endfunction
+  " <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-y>  neocomplete#close_popup()
+  inoremap <expr><C-e>  neocomplete#cancel_popup()
+else
+  let g:neocomplcache_enable_at_startup = 1 
+  let g:neocomplcache_enable_auto_select = 0 
+  " Use smartcase.
+  let g:neocomplcache_enable_smart_case = 1
+  " Use camel case completion.
+  let g:neocomplcache_enable_camel_case_completion = 1
+  " Use underbar completion.
+  let g:neocomplcache_enable_underbar_completion = 1
+  " Set minimum syntax keyword length.
+  let g:neocomplcache_min_syntax_length = 3 
+
+  imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>" 
+  " <CR>: close popup and save indent.
+  " inoremap <expr><CR>  neocomplcache#smart_close_popup() . (&indentexpr != '' " ? "\<C-f>\<CR>X\<BS>":"\<CR>")
+  " <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-y>  neocomplcache#close_popup()
+endif
+
 "================================================================================
 " buffers
 "================================================================================
@@ -351,14 +402,14 @@ nnoremap <unique> ec :cclose<CR>
 "================================================================================
 " other plugins
 "================================================================================
-" unite.vim
-" 入力モードで開始する
-" let g:unite_enable_start_insert=1
-nnoremap <silent> UU :<C-u>UniteWithCurrentDir buffer_tab file_mru<CR>
-nnoremap <silent> B :<C-u>Unite buffer file_mru<CR>
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+" " unite.vim
+" " 入力モードで開始する
+" " let g:unite_enable_start_insert=1
+" nnoremap <silent> UU :<C-u>UniteWithCurrentDir buffer_tab file_mru<CR>
+" nnoremap <silent> B :<C-u>Unite buffer file_mru<CR>
+" " ESCキーを2回押すと終了する
+" au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+" au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " VimFiler
 " let g:vimfiler_edit_action = 'tabopen'
