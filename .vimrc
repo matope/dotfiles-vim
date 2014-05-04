@@ -40,6 +40,7 @@ Bundle 'vim-jp/cpp-vim'
 Bundle 'fatih/vim-go'
 Bundle 'itchyny/lightline.vim'
 Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'vim-jp/vimdoc-ja'
 
 " カラースキーム
 Bundle 'croaker/mustang-vim'
