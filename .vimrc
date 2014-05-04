@@ -39,6 +39,7 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'fatih/vim-go'
 Bundle 'itchyny/lightline.vim'
+Bundle 'jistr/vim-nerdtree-tabs'
 
 " カラースキーム
 Bundle 'croaker/mustang-vim'
