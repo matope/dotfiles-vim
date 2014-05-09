@@ -4,43 +4,49 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-function! s:meet_neocomplete_requirements()
-  return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
-endfunction
-
-
 " let Vundle manage Vundle
 " required! 
 let g:vundle_default_git_proto='git'
 Bundle 'gmarik/vundle'
 
-if s:meet_neocomplete_requirements()
-  Bundle 'Shougo/neocomplete.vim'
-else
-"  Bundle 'Shougo/neocomplcache.vim'
-endif
-" Bundle 'unite.vim'
-" Bundle 'snipMate'
-" Bundle 'Shougo/vimfiler'
-" Bundle 'Shougo/vimproc'
-" Bundle 'Shougo/vimshell'
-"Bundle 'ujihisa/unite-colorscheme'
 
 " Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'fugitive.vim'
 Bundle 'motemen/git-vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'vim-scripts/Align'
 Bundle 'scrooloose/syntastic'
 Bundle 'rking/ag.vim'
-Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-jp/cpp-vim'
-Bundle 'fatih/vim-go'
-Bundle 'itchyny/lightline.vim'
-Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'vim-jp/vimdoc-ja'
+Bundle 'kien/ctrlp.vim'
+
+" NERDTree系
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+source ~/.vim/conf/vim-nerdtree-tabs.vim
+
+Bundle 'fatih/vim-go'
+source ~/.vim/conf/vim-go.vim
+
+"Bundle 'vim-scripts/taglist.vim'
+"source ~/.vim/conf/taglist.vim
+
+Bundle 'majutsushi/tagbar'
+source ~/.vim/conf/tagbar.vim
+
+Bundle 'itchyny/lightline.vim'
+source ~/.vim/conf/lightline.vim
+
+" neocomplete.vimの動作要件を満たさない環境ならneocomplcacheにフォールバックする
+if (has('lua') && (v:version > 703 || (v:version == 703 && has('patch885'))))
+  Bundle 'Shougo/neocomplete.vim'
+  source ~/.vim/conf/neocomplete.vim
+else
+  Bundle 'Shougo/neocomplcache.vim'
+  source ~/.vim/conf/neocomplcache.vim
+endif
 
 " カラースキーム
 Bundle 'croaker/mustang-vim'
@@ -68,29 +74,13 @@ set number
 "ステータスラインを常に表示
 set laststatus=2
 " ステータスラインの表示
-" set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugitive#statusline()}\ %F%=%l,%c%V%8P
-"set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y
+set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugitive#statusline()}\ %F%=%l,%c%V%8P
 
-if &term =~ "screen"
-  " screen Buffer 切り替えで screen にファイル名を表示
-  autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kv:%\\"' | endif
-endif
+"if &term =~ "screen"
+"  " screen Buffer 切り替えで screen にファイル名を表示
+"  autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | silent! exe '!echo -n "kv:%\\"' | endif
+"endif
 
-"--------------------------------------------------------------------------------
-" lightline
-"--------------------------------------------------------------------------------
-let g:lightline = {
-      \ 'colorscheme': 'default',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"⭤":""}',
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      \ }
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
 "================================================================================
 " syntax and colors
 "================================================================================
@@ -113,7 +103,6 @@ let g:lucius_style='dark'
 " let g:lucius_contrast='high'
 set background=dark
 
-
 colorscheme molokai
 
 "タブ文字の表示
@@ -125,13 +114,6 @@ set showmatch
 
 " Don't wrap words by default
 set textwidth=0
-
-" if !has('win32')
-"   " 補完候補色
-"   hi Pmenu ctermbg=8
-"   hi PmenuSel ctermbg=12
-"   hi PmenuSbar ctermbg=0
-" endif
 
 " 選択範囲が見えなくなるのでコメントアウト
 if !has('macunix')
@@ -259,6 +241,8 @@ set scrolloff=5
 " スクロールを高速化
 set ttyfast
 
+
+
 "================================================================================
 " completion
 "================================================================================
@@ -271,113 +255,6 @@ set wildmode=list:longest
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
-
-if s:meet_neocomplete_requirements()
-"  "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-"  " Disable AutoComplPop.
-"  let g:acp_enableAtStartup = 0
-"  " Use neocomplete.
-"  let g:neocomplete#enable_at_startup = 1
-"  " Use smartcase.
-"  let g:neocomplete#enable_smart_case = 1
-"  " Set minimum syntax keyword length.
-"  let g:neocomplete#sources#syntax#min_keyword_length = 3
-"  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"
-"  " Define dictionary.
-"  let g:neocomplete#sources#dictionary#dictionaries = {
-"      \ 'default' : '',
-"      \ 'vimshell' : $HOME.'/.vimshell_hist',
-"      \ 'scheme' : $HOME.'/.gosh_completions'
-"          \ }
-"
-"  " Define keyword.
-"  if !exists('g:neocomplete#keyword_patterns')
-"      let g:neocomplete#keyword_patterns = {}
-"  endif
-"  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-"
-"  " Plugin key-mappings.
-"  inoremap <expr><C-g>     neocomplete#undo_completion()
-"  inoremap <expr><C-l>     neocomplete#complete_common_string()
-"
-"  " Recommended key-mappings.
-"  " <CR>: close popup and save indent.
-"  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"  function! s:my_cr_function()
-"    return neocomplete#close_popup() . "\<CR>"
-"    " For no inserting <CR> key.
-"    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-"  endfunction
-"  " <TAB>: completion.
-"  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"  " <C-h>, <BS>: close popup and delete backword char.
-"  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"  inoremap <expr><C-y>  neocomplete#close_popup()
-"  inoremap <expr><C-e>  neocomplete#cancel_popup()
-"  " Close popup by <Space>.
-"  "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-"
-"  " For cursor moving in insert mode(Not recommended)
-"  "inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-"  "inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"  "inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-"  "inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-"  " Or set this.
-"  "let g:neocomplete#enable_cursor_hold_i = 1
-"  " Or set this.
-"  "let g:neocomplete#enable_insert_char_pre = 1
-"
-"  " AutoComplPop like behavior.
-"  "let g:neocomplete#enable_auto_select = 1
-"
-"  " Shell like behavior(not recommended).
-"  "set completeopt+=longest
-"  "let g:neocomplete#enable_auto_select = 1
-"  "let g:neocomplete#disable_auto_complete = 1
-"  "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-"
-"  " Enable omni completion.
-"  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"
-"  " Enable heavy omni completion.
-"  if !exists('g:neocomplete#sources#omni#input_patterns')
-"    let g:neocomplete#sources#omni#input_patterns = {}
-"  endif
-"  "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"  "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"  "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-"
-"  " For perlomni.vim setting.
-"  " https://github.com/c9s/perlomni.vim
-"  let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-else
-"  let g:neocomplcache_enable_at_startup = 1 
-"  let g:neocomplcache_enable_auto_select = 0 
-"  " Use smartcase.
-"  let g:neocomplcache_enable_smart_case = 1
-"  " Use camel case completion.
-"  let g:neocomplcache_enable_camel_case_completion = 1
-"  " Use underbar completion.
-"  let g:neocomplcache_enable_underbar_completion = 1
-"  " Set minimum syntax keyword length.
-"  let g:neocomplcache_min_syntax_length = 3 
-"
-"  imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>" 
-"  " <CR>: close popup and save indent.
-"  " inoremap <expr><CR>  neocomplcache#smart_close_popup() . (&indentexpr != '' " ? "\<C-f>\<CR>X\<BS>":"\<CR>")
-"  " <TAB>: completion.
-"  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"  " <C-h>, <BS>: close popup and delete backword char.
-"  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-"  inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-"  inoremap <expr><C-y>  neocomplcache#close_popup()
-endif
 
 "================================================================================
 " buffers
@@ -394,16 +271,6 @@ set autoread
 set splitbelow
 " 新しいウィンドウを右に開く
 set splitright
-
-"================================================================================
-" tabs
-"================================================================================
-nmap tc :tabe<CR>
-nmap te :tabe 
-nmap to :tabe 
-nmap tn :tabnext<CR>
-nmap tp :tabNext<CR>
-nmap td :tabclose<CR>
 
 "================================================================================
 " encoding
@@ -447,22 +314,7 @@ autocmd QuickFixCmdPost * :call s:autoCloseQuickFix()
 " quickfix を閉じる
 nnoremap <unique> ec :cclose<CR>
 
-"================================================================================
-" other plugins
-"================================================================================
-" " unite.vim
-" " 入力モードで開始する
-" " let g:unite_enable_start_insert=1
-" nnoremap <silent> UU :<C-u>UniteWithCurrentDir buffer_tab file_mru<CR>
-" nnoremap <silent> B :<C-u>Unite buffer file_mru<CR>
-" " ESCキーを2回押すと終了する
-" au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-" au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
-" VimFiler
-" let g:vimfiler_edit_action = 'tabopen'
-let g:vimfiler_as_default_explorer = 1
-:command Filer :VimFiler -split -winwidth=35 -no-quit
 
 "================================================================================
 " mouse
@@ -521,12 +373,3 @@ if $GOROOT != ''
 endif
 filetype plugin on
 
-"================================================================================
-" Taglist
-"================================================================================
-"set tags = tags
-let Tlist_Ctags_Cmd = "/usr/local/bin/ctags -R"  " ctagsのコマンド
-"let Tlist_Show_One_File = 1                         ” 現在表示中のファイルのみのタグしか表示しない
-"let Tlist_Use_Right_Window = 1                    ” 右側にtag listのウインドうを表示する
-"let Tlist_Exit_OnlyWindow = 1                      " taglistのウインドウだけならVimを閉じる
-"map <silent> <leader>l :TlistToggle<CR>      " \lでtaglistウインドウを開いたり閉じたり出来るショートカット
