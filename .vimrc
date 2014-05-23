@@ -14,6 +14,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'fugitive.vim'
 Bundle 'motemen/git-vim'
+" Bundle 'airblade/vim-gitgutter'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'vim-scripts/Align'
 Bundle 'scrooloose/syntastic'
@@ -372,4 +373,10 @@ if $GOROOT != ''
   set rtp+=$GOROOT/misc/vim
 endif
 filetype plugin on
+
+augroup BgHighlight
+  autocmd!
+  autocmd WinEnter * set cul
+  autocmd WinLeave * set nocul
+augroup END
 
