@@ -360,6 +360,7 @@ endif
 autocmd BufNewFile *.cpp 0r $HOME/.vim/templates/cpp.txt
 autocmd BufNewFile *.cc 0r $HOME/.vim/templates/cpp.txt
 autocmd BufNewFile *.go 0r $HOME/.vim/templates/go.txt
+autocmd BufNewFile *.sh 0r $HOME/.vim/templates/shell.sh
 
 
 "================================================================================
