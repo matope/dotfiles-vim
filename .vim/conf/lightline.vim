@@ -10,8 +10,12 @@ let g:lightline = {
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
 
+" statuslineのファイル名を相対パスに変更
 let g:lightline = {
       \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'filename': '%f'
+      \   }
       \ }
 
 let g:lightline.enable = {
