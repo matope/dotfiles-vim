@@ -75,7 +75,7 @@ set number
 "ステータスラインを常に表示
 set laststatus=2
 " ステータスラインの表示
-set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugitive#statusline()}\ %F%=%l,%c%V%8P
+" set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{']'}%y%{fugitive#statusline()}\ %F%=%l,%c%V%8P
 
 "if &term =~ "screen"
 "  " screen Buffer 切り替えで screen にファイル名を表示
@@ -294,7 +294,7 @@ set history=1000 " keep 50 lines of command line history
 " git, vcs
 "================================================================================
 " Bundle 'fugitive.vim'
-nnoremap <unique> gG :exec ':silent Ggrep ' . expand('<cword>')<CR>
+" nnoremap <unique> gG :exec ':silent Ggrep ' . expand('<cword>')<CR>
 
 "================================================================================
 " quickfix
