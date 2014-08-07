@@ -1,13 +1,12 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" let Vundle manage Vundle
-" required! 
-let g:vundle_default_git_proto='git'
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Bundle 'gmarik/Vundle.vim'
 
 
 " Bundle 'Valloric/YouCompleteMe'
@@ -63,9 +62,11 @@ Bundle 'altercation/solarized'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/pyte'
 Bundle 'w0ng/vim-hybrid'
-Bundle 'vim-scripts/Zenburn'
 Bundle 'vim-scripts/desert256.vim'
 Bundle 'vim-scripts/wombat256.vim'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 "================================================================================
 " ruler, statusline
