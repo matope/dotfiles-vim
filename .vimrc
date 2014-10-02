@@ -21,14 +21,23 @@ Bundle 'rking/ag.vim'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'vim-jp/vimdoc-ja'
 Bundle 'kien/ctrlp.vim'
+" Bundle 'elzr/vim-json'
+Bundle 'tpope/vim-surround'
 
 " NERDTree系
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 source ~/.vim/conf/vim-nerdtree-tabs.vim
 
+" Golang系
 Bundle 'fatih/vim-go'
 source ~/.vim/conf/vim-go.vim
+Bundle 'google/vim-ft-go'
+Bundle 'vim-jp/vim-go-extra'
+
+Bundle 'Shougo/echodoc.vim'
+set cmdheight=2
+let g:echodoc_enable_at_startup = 1
 
 "Bundle 'vim-scripts/taglist.vim'
 "source ~/.vim/conf/taglist.vim
@@ -47,6 +56,8 @@ else
   Bundle 'Shougo/neocomplcache.vim'
   source ~/.vim/conf/neocomplcache.vim
 endif
+
+" Bundle 'mileszs/ack.vim'
 
 " カラースキーム
 Bundle 'croaker/mustang-vim'
@@ -67,6 +78,7 @@ Bundle 'vim-scripts/wombat256.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+filetype plugin on
 
 "================================================================================
 " ruler, statusline
@@ -347,7 +359,7 @@ set visualbell t_vb=
 " <c-j>でEsc
 imap <c-j> <esc>
 
-nmap <F11> :set paste<CR>i<CR>
+nmap <F10> :set paste<CR>i<CR>
 
 "================================================================================
 " local setting
@@ -377,6 +389,9 @@ if $GOROOT != ''
   set rtp+=$GOROOT/misc/vim
 endif
 filetype plugin on
+
+autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+autocmd FileType go :match goErr /\<err\>/
 
 augroup BgHighlight
   autocmd!

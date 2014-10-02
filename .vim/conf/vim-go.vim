@@ -40,3 +40,11 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+let g:go_play_open_browser = 0
+let g:go_fmt_command = "goimports"
+
+
+" :!~/.vim-go/gocode set<CR>
+" :let result = s:system(printf('%s set', g:go_gocode_bin ))
+" :echo result
