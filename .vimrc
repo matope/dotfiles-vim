@@ -349,7 +349,11 @@ endif
 "  set autochdir
 "endif
 
+" <Leader> を , に設定
+let mapleader = ","
+
 " ビジュアルベルを抑止
+
 set visualbell t_vb=
 
 " <c-j>でEsc
