@@ -225,10 +225,6 @@ elseif has('win32unix') " cygwin
   nnoremap fp :r! getclip<CR>
 endif
 
-" Gスクロールが遅い件の対応
-set timeoutlen=10
-set ttimeoutlen=1
-
 " C-CでESC
 inoremap <C-C> <ESC>
 
