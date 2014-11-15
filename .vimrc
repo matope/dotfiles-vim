@@ -407,3 +407,25 @@ augroup BgHighlight
   autocmd WinLeave * set nocul
 augroup END
 
+
+"================================================================================
+" コマンドラインでのキーバインドを Emacs スタイルにする
+"===============================================================================
+" Ctrl+Aで行頭へ移動
+cnoremap <C-A>   <Home>
+" Ctrl+Bで一文字戻る
+cnoremap <C-B>   <Left>
+" Ctrl+Dでカーソルの下の文字を削除
+cnoremap <C-D>   <Del>
+" Ctrl+Eで行末へ移動
+cnoremap <C-E>   <End>
+" Ctrl+Fで一文字進む
+cnoremap <C-F>   <Right>
+" Ctrl+Nでコマンドライン履歴を一つ進む
+cnoremap <C-N>   <Down>
+" Ctrl+Pでコマンドライン履歴を一つ戻る
+cnoremap <C-P>   <Up>
+" Alt+Ctrl+Bで前の単語へ移動
+cnoremap <Esc><C-B>  <S-Left>
+" Alt+Ctrl+Fで次の単語へ移動
+cnoremap <Esc><C-F>  <S-Right> 
