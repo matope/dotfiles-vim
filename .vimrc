@@ -33,7 +33,7 @@ source ~/.vim/conf/vim-nerdtree-tabs.vim
 Bundle 'fatih/vim-go'
 source ~/.vim/conf/vim-go.vim
 Bundle 'google/vim-ft-go'
-Bundle 'vim-jp/vim-go-extra'
+"Bundle 'vim-jp/vim-go-extra'
 
 Bundle 'Shougo/echodoc.vim'
 set cmdheight=2
@@ -374,9 +374,17 @@ endif
 "================================================================================
 autocmd BufNewFile *.cpp 0r $HOME/.vim/templates/cpp.txt
 autocmd BufNewFile *.cc 0r $HOME/.vim/templates/cpp.txt
-autocmd BufNewFile *.go 0r $HOME/.vim/templates/go.txt
 autocmd BufNewFile *.sh 0r $HOME/.vim/templates/shell.sh
 
+" Go のテンプレート
+function! s:ReadGoTemplate(name)
+  if a:name =~# '_test.go'
+    0r $HOME/.vim/templates/main_test.go
+  else
+    0r $HOME/.vim/templates/main.go
+  endif
+endfunction
+autocmd BufNewFile *.go call <SID>ReadGoTemplate(expand('%'))
 
 "================================================================================
 " Golang
