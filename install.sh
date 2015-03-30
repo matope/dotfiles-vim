@@ -1,20 +1,16 @@
 #!/bin/sh
 
-success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
-}
-
 DOTFILES_ROOT=`cd $(dirname $0); pwd`
 
 cd $DOTFILES_ROOT
-git submodule init
-git submodule foreach 'git pull origin master'
-git submodule update
 
+# Link files
 ln -siv $DOTFILES_ROOT/.vimrc $HOME/.vimrc
 ln -siv $DOTFILES_ROOT/.vim $HOME/.vim
 
-success "Link done. executing vim +\":BundleInstall\"..."
-vim +":BundleInstall" +:q +:q
+# Install vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+success "Link done. executing vim +\":PlugInstall\"..."
+vim +":PlugInstall" +:q +:q
 
 exit 0
