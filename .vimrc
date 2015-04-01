@@ -12,6 +12,7 @@ Plug 'https://github.com/fatih/vim-go.git'
 let g:go_fmt_command = "goimports"
 Plug 'Shougo/neocomplete.vim'
 "source ~/.vim/conf/neocomplete.vim
+Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 source ~/.vim/conf/tagbar.vim
 Plug 'itchyny/lightline.vim'
