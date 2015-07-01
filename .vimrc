@@ -17,6 +17,8 @@ source ~/.vim/conf/tagbar.vim
 Plug 'itchyny/lightline.vim'
 source ~/.vim/conf/lightline.vim
 Plug 'rking/ag.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'stephpy/vim-yaml'
 
 " カラースキーマ
 Plug 'tomasr/molokai'
