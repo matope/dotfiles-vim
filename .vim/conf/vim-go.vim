@@ -43,6 +43,7 @@ let g:tagbar_type_go = {
 
 let g:go_play_open_browser = 0
 let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
 
 " :!~/.vim-go/gocode set<CR>
 " :let result = s:system(printf('%s set', g:go_gocode_bin ))
