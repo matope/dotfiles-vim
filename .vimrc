@@ -9,7 +9,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 source ~/.vim/conf/vim-nerdtree-tabs.vim
 Plug 'https://github.com/fatih/vim-go.git'
-let g:go_fmt_command = "goimports"
+source ~/.vim/conf/vim-go.vim
 Plug 'Shougo/neocomplete.vim'
 "source ~/.vim/conf/neocomplete.vim
 Plug 'majutsushi/tagbar'
@@ -19,6 +19,9 @@ source ~/.vim/conf/lightline.vim
 Plug 'rking/ag.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'stephpy/vim-yaml'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " カラースキーマ
 Plug 'tomasr/molokai'
