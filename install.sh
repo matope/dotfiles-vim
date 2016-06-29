@@ -10,7 +10,8 @@ ln -siv $DOTFILES_ROOT/.vim $HOME/.vim
 
 # Install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-echo "Link done. executing vim +\":PlugInstall\"..."
-vim +":PlugInstall" +:q +:q
+echo "Link done."
+echo "Executing vim +\":PlugInstall\" +\":GoInstallBinaries\" +:q +:q..."
+vim +":PlugInstall" +":GoInstallBinaries" +:q +:q
 
 exit 0
