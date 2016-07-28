@@ -17,7 +17,7 @@ source ~/.vim/conf/tagbar.vim
 Plug 'itchyny/lightline.vim'
 source ~/.vim/conf/lightline.vim
 Plug 'rking/ag.vim'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
@@ -114,6 +114,9 @@ inoremap <C-C> <ESC>
 " Insert モード抜けたら nopaste
 autocmd InsertLeave * set nopaste
 
+" ,p で:set paste
+nnoremap <leader>p :set paste<CR>
+
 "================================================================================
 " cursor moving
 "================================================================================
@@ -173,22 +176,24 @@ set history=1000 " keep 1000 lines of command line history
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 
+" Leaderキーを設定
+let mapleader = ","
+
+" GoBuild時に自動保存をする。via. https://github.com/fatih/vim-go-tutorial
+set autowrite
+
+" Ctrl-n/Ctrl-pでquickfixリストを移動する via. https://github.com/fatih/vim-go-tutorial
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+nnoremap <leader>a :cclose<CR>
+
+
 "================================================================================
 " Templates
 "================================================================================
 autocmd BufNewFile *.cpp 0r $HOME/.vim/templates/cpp.txt
 autocmd BufNewFile *.cc 0r $HOME/.vim/templates/cpp.txt
 autocmd BufNewFile *.sh 0r $HOME/.vim/templates/shell.sh
-
-" Go のテンプレート
-function! s:ReadGoTemplate(name)
-  if a:name =~# '_test.go'
-    0r $HOME/.vim/templates/main_test.go
-  else
-    0r $HOME/.vim/templates/main.go
-  endif
-endfunction
-autocmd BufNewFile *.go call <SID>ReadGoTemplate(expand('%'))
 
 "================================================================================
 " コマンドラインでのキーバインドを Emacs スタイルにする

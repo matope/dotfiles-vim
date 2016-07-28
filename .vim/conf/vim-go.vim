@@ -43,12 +43,7 @@ let g:tagbar_type_go = {
 
 let g:go_play_open_browser = 0
 let g:go_fmt_command = "goimports"
-let g:go_fmt_autosave = 1
 
-" :!~/.vim-go/gocode set<CR>
-" :let result = s:system(printf('%s set', g:go_gocode_bin ))
-" :echo result
-"
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
@@ -57,3 +52,7 @@ au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>e <Plug>(go-rename)
+
+autocmd FileType go nmap <leader>b <Plug>(go-build)
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
