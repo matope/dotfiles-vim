@@ -114,6 +114,9 @@ inoremap <C-C> <ESC>
 " Insert モード抜けたら nopaste
 autocmd InsertLeave * set nopaste
 
+" Leaderキーを設定
+let mapleader = ","
+
 " ,p で:set paste
 nnoremap <leader>p :set paste<CR>
 
@@ -175,9 +178,6 @@ set history=1000 " keep 1000 lines of command line history
 "================================================================================
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
-
-" Leaderキーを設定
-let mapleader = ","
 
 " GoBuild時に自動保存をする。via. https://github.com/fatih/vim-go-tutorial
 set autowrite
