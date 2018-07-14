@@ -22,6 +22,8 @@ Plug 'stephpy/vim-yaml'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'alvan/vim-closetag'
 
 " カラースキーマ
 Plug 'tomasr/molokai'
@@ -50,6 +52,8 @@ call plug#end()
 filetype plugin on
 filetype indent on
 syntax enable
+
+let g:syntastic_javascript_checkers=['eslint']
 
 set background=dark
 set number
@@ -118,7 +122,7 @@ autocmd InsertLeave * set nopaste
 let mapleader = ","
 
 " ,p で:set paste
-nnoremap <leader>p :set paste<CR>
+nnoremap <leader>p :set paste<CR>i
 
 "================================================================================
 " cursor moving

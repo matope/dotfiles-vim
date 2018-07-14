@@ -43,6 +43,7 @@ let g:tagbar_type_go = {
 
 let g:go_play_open_browser = 0
 let g:go_fmt_command = "goimports"
+let g:go_def_mode = 'godef'
 let g:syntastic_mode_map = {'active_filetypes': ['go'] }
 let g:syntastic_go_checkers = ['go', 'golint']
 
