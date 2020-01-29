@@ -225,3 +225,5 @@ cnoremap <Esc><C-F>  <S-Right>
 " color scheme
 "================================================================================
 colorscheme molokai
+
+set clipboard+=unnamed
