@@ -45,6 +45,9 @@ let g:go_play_open_browser = 0
 let g:go_fmt_command = "goimports"
 let g:syntastic_mode_map = {'active_filetypes': ['go'] }
 let g:syntastic_go_checkers = ['go', 'golint']
+let g:go_rename_command = 'gopls'
+
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)

@@ -7,21 +7,36 @@ Plug 'vim-scripts/Align'
 Plug 'vim-jp/vimdoc-ja'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-source ~/.vim/conf/vim-nerdtree-tabs.vim
+" Plug 'git://github.com/jimsei/winresizer.git'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Shougo/neocomplete.vim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 Plug 'https://github.com/fatih/vim-go.git'
-source ~/.vim/conf/vim-go.vim
-Plug 'Shougo/neocomplete.vim'
-"source ~/.vim/conf/neocomplete.vim
 Plug 'majutsushi/tagbar'
-source ~/.vim/conf/tagbar.vim
 Plug 'itchyny/lightline.vim'
-source ~/.vim/conf/lightline.vim
 Plug 'rking/ag.vim'
-" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
+Plug 'https://github.com/machakann/vim-swap'
+Plug 'https://github.com/tpope/vim-surround'
+Plug 'https://github.com/tyru/open-browser.vim'
 
 " カラースキーマ
 Plug 'tomasr/molokai'
@@ -43,6 +58,20 @@ Plug 'vim-scripts/desert256.vim'
 Plug 'vim-scripts/wombat256.vim'
 
 call plug#end()
+
+source ~/.vim/conf/vim-nerdtree-tabs.vim
+" source ~/.vim/conf/neocomplete.vim
+source ~/.vim/conf/neosnippet.vim
+source ~/.vim/conf/vim-go.vim
+source ~/.vim/conf/tagbar.vim
+source ~/.vim/conf/lightline.vim
+source ~/.vim/conf/open-browser.vim
+
+call deoplete#custom#option({
+\  'auto_complete': v:false,
+\  'smart_case': v:true,
+\})
+
 
 "================================================================================
 " syntax and colors
@@ -223,3 +252,9 @@ cnoremap <Esc><C-F>  <S-Right>
 colorscheme molokai
 
 set clipboard+=unnamed
+
+" makeとかをquickfixで開く
+au QuickfixCmdPost make,grep,grepadd,vimgrep copen
+
+" diff を縦分割にする
+set diffopt+=vertical
