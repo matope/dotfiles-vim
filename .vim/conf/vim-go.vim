@@ -48,7 +48,17 @@ let g:syntastic_mode_map = {'active_filetypes': ['go'] }
 let g:syntastic_go_checkers = ['go', 'golint']
 let g:go_rename_command = 'gopls'
 
-call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+let g:UltiSnipsUsePythonVersion    = 3
+let g:UltiSnipsEditSplit           = 'normal'
+let g:UltiSnipsEnableSnipMate      = 0
+let g:UltiSnipsExpandTrigger       = '<c-k>'
+let g:UltiSnipsJumpForwardTrigger  = '<c-f>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
+command! SNIP UltiSnipsEdit
+
+if has('nvim')
+  call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+endif
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)

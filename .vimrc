@@ -8,16 +8,20 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 " Plug 'git://github.com/jimsei/winresizer.git'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'Shougo/neocomplete.vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Shougo/neocomplete.vim'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  call deoplete#custom#option({
+  \  'auto_complete': v:false,
+  \  'smart_case': v:true,
+  \})
 else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"  let g:deoplete#enable_at_startup = 1
 endif
-let g:deoplete#enable_at_startup = 1
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -28,7 +32,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/fatih/vim-go.git'
 Plug 'majutsushi/tagbar'
 Plug 'itchyny/lightline.vim'
-Plug 'rking/ag.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
@@ -39,6 +42,11 @@ Plug 'alvan/vim-closetag'
 Plug 'https://github.com/machakann/vim-swap'
 Plug 'https://github.com/tpope/vim-surround'
 Plug 'https://github.com/tyru/open-browser.vim'
+" Plug 'SirVer/ultisnips'
+
+" Ag and Rg should be used by fzf.
+" Plug 'rking/ag.vim'
+" Plug 'https://github.com/jremmen/vim-ripgrep'
 
 " カラースキーマ
 Plug 'tomasr/molokai'
@@ -68,11 +76,6 @@ source ~/.vim/conf/vim-go.vim
 source ~/.vim/conf/tagbar.vim
 source ~/.vim/conf/lightline.vim
 source ~/.vim/conf/open-browser.vim
-
-call deoplete#custom#option({
-\  'auto_complete': v:false,
-\  'smart_case': v:true,
-\})
 
 
 "================================================================================
@@ -261,4 +264,4 @@ set clipboard+=unnamed
 au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
 " diff を縦分割にする
-set diffopt+=vertical
+" set diffopt+=vertical
